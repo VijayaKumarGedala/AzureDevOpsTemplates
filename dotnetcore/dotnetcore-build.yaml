@@ -1,0 +1,40 @@
+parameters:
+  - name: mainproject
+    type: string
+    default: '**/*.csproj'
+  - name: testproject
+    type: string
+    default: '**/*Tests.csproj'
+  - name: runTests
+    type: boolean
+    default: True
+
+steps:
+  - task: DotNetCoreCLI@2
+    displayName: Build $(Build.Repository.Name)
+    inputs:
+      command: 'build'
+      projects: ${{ parameters.mainproject }}
+
+  - task: DotNetCoreCLI@2
+    displayName: Test $(Build.Repository.Name)
+    condition: eq(${{ parameters.runTests }}, true)
+    inputs:
+      command: 'test'
+      projects: ${{ parameters.testproject }}
+
+  - task: DotNetCoreCLI@2
+    displayName: Publish $(Build.Repository.Name)
+    inputs:
+      command: 'publish'
+      publishWebProjects: True
+      projects: ${{ parameters.mainproject }}
+      arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+      zipAfterPublish: true
+      modifyOutputPath: true
+
+  - task: PublishPipelineArtifact@1
+    displayName: 'Publish Artifact'
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)' 
+      artifactName: $(Build.Repository.Name)
