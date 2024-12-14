@@ -18,28 +18,28 @@ parameters:
     displayName: Artifacts Path
 steps:
   - task: maven@4
-      inputs: 
-        mavenPOMFile: pom.xml
-        goals: ${{ parameters.goal }}
-        publishJUnitResults: true
-        testResultsFiles: ${{ parameters.testResultsFiles }}
-      condition: eq('${{ parameters.specificVersion }}','')
+    inputs: 
+      mavenPOMFile: pom.xml
+      goals: ${{ parameters.goal }}
+      publishJUnitResults: true
+      testResultsFiles: ${{ parameters.testResultsFiles }}
+    condition: eq('${{ parameters.specificVersion }}','')
 
   - task: maven@4
-      inputs: 
-        mavenPOMFile: pom.xml
-        goals: ${{ parameters.goal }}
-        publishJUnitResults: true
-        testResultsFiles: ${{ parameters.testResultsFiles }}
-        jdkVersionOption: ${{ parameters.specificVersion }}
-      condition: ne('${{ parameters.specificVersion }}','')
+    inputs: 
+      mavenPOMFile: pom.xml
+      goals: ${{ parameters.goal }}
+      publishJUnitResults: true
+      testResultsFiles: ${{ parameters.testResultsFiles }}
+      jdkVersionOption: ${{ parameters.specificVersion }}
+    condition: ne('${{ parameters.specificVersion }}','')
 
   - task: CopyFiles@2
-      inputs:
-        contents: $(parameters.artifactsPath)
-        targetFolder: $(Build.ArtifactStagingDirectory)
+    inputs:
+      contents: $(parameters.artifactsPath)
+      targetFolder: $(Build.ArtifactStagingDirectory)
 
   - task: PublishBuildArtifacts@1
-      inputs:
-        pathToPublish: $(Build.ArtifactStagingDirectory)
-        artifactName: $(Build.Repository.Name)
+    inputs:
+      pathToPublish: $(Build.ArtifactStagingDirectory)
+      artifactName: $(Build.Repository.Name)
