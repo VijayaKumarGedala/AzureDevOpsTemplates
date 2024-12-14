@@ -25,7 +25,7 @@ parameters:
       testResultsFiles: ${{ parameters.testResultsFiles }}
     condition: eq('${{ parameters.specificVersion }}','')
 
-  - task: maven@4
+- task: maven@4
     inputs: 
       mavenPOMFile: pom.xml
       goals: ${{ parameters.goal }}
@@ -34,12 +34,12 @@ parameters:
       jdkVersionOption: ${{ parameters.specificVersion }}
     condition: ne('${{ parameters.specificVersion }}','')
 
-  - task: CopyFiles@2
+- task: CopyFiles@2
     inputs:
       contents: $(parameters.artifactsPath)
       targetFolder: $(Build.ArtifactStagingDirectory)
 
-  - task: PublishBuildArtifacts@1
+- task: PublishBuildArtifacts@1
     inputs:
       pathToPublish: $(Build.ArtifactStagingDirectory)
       artifactName: $(Build.Repository.Name)
