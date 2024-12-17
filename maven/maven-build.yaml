@@ -38,7 +38,7 @@ steps:
       
   - task: CopyFiles@2
     inputs:
-      contents: ${{ parameters.artifactsPath }}
+      contents: '**/spring-petclinic*.jar'
       targetFolder: $(Build.ArtifactStagingDirectory)
   - task: PublishBuildArtifacts@1
     inputs:
