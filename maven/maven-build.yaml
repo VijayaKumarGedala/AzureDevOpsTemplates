@@ -38,10 +38,10 @@ steps:
       
   - task: CopyFiles@2
     inputs:
-      contents: ${{ parameters.artifactsPath}}
+      contents: '**/*.jar'
       targetFolder: $(Build.ArtifactStagingDirectory)
   - task: PublishBuildArtifacts@1
     inputs:
       pathToPublish: $(Build.ArtifactStagingDirectory)
       artifactName: $(Build.Repository.Name)
-      publishLocation: '_work/4/a'
+    
