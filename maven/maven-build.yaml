@@ -16,6 +16,8 @@ parameters:
     type: string
     default: '**/*.jar'
     displayName: Artifacts Path
+
+    
 steps:
   - task: maven@4
     inputs: 
