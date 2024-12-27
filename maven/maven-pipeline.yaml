@@ -1,13 +1,36 @@
+---
+pool: Default
+
+
+trigger: none
+
+
+pr:
+  branches:
+    include:
+      - develop
+
+
 variables:
 - group: generic_java_maven 
 
+resources:
+  repositories:
+    - repository: resuablePrivateAssets  
+      type: git                          
+      name: AzureDevOpsTemplates.git
+      ref: 'refs/heads/main'   
+
 steps:
-  - template: ./maven-build.yaml
+  - template: AzureDevOpsTemplates.git/maven/maven-build.yaml@resuablePrivateAssets  
     parameters:
-      goal: $(goal)
-      specificVersion: ''
-      artifactsPath: $(artifactsPath)
-      testResultsFiles: $(testResultsFile)
-      Dockerfile: $(Dockerfile)
-      ContainerRegistry: $(ContainerRegistry)
-      Repository: $(Repository)
+      goal: $(goal)                   
+      specificVersion: ''               
+      artifactsPath: $(artifactsPath)   
+      testResultsFiles: $(testResultsFile) 
+      Dockerfile: $(Dockerfile)         
+      ContainerRegistry: $(ContainerRegistry) 
+      Repository: $(Repository)         
+
+
+           
