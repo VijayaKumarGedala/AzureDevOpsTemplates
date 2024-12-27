@@ -8,3 +8,6 @@ steps:
       specificVersion: ''
       artifactsPath: $(artifactsPath)
       testResultsFiles: $(testResultsFile)
+      Dockerfile: $(Dockerfile)
+      ContainerRegistry: $(ContainerRegistry)
+      Repository: $(Repository)
