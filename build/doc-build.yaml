@@ -24,3 +24,4 @@
       repository: $ {{ parameters.Repository}}
       command: 'buildAndPush' 
       Dockerfile: ${{ parameters.Dockerfile}}
+      
