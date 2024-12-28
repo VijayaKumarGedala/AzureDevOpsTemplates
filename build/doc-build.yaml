@@ -1,0 +1,26 @@
+ parameters:
+  - name: goal
+    type: string
+    default: Build
+    displayName: Build and push Docker file
+  - name: Dockerfile
+    type: string
+    default: '**/Dockerfile'
+    displayName: Docker_file
+  - name: ContainerRegistry
+    type: string
+    default: 'vijaykumar100'
+    displayName: ContainerRegistry
+  - name: Repository
+    type: string
+    default: 'practice_docker'
+    displayName: Repository
+
+
+ - task: Docker@2
+    displayName: 'Docker build and push'
+    inputs:
+      containerRegistry: $ {{ parameters.ContainerRegistry}}
+      repository: $ {{ parameters.Repository}}
+      command: 'buildAndPush' 
+      Dockerfile: ${{ parameters.Dockerfile}}

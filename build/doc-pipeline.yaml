@@ -1,0 +1,26 @@
+---
+pool: Default
+
+
+trigger: none
+
+
+pr:
+  branches:
+    include:
+      - develop
+
+resources:
+  repositories:
+    - repository: resuablePrivateAssets  
+      type: git                          
+      name: AzureDevOpsTemplates.git
+      ref: 'refs/heads/main'   
+
+steps:
+  - template: AzureDevOpsTemplates.git/build/doc-pipeline.yaml@resuablePrivateAssets  
+    parameters:
+      goal: $(goal)                   
+      Dockerfile: $(Dockerfile)         
+      ContainerRegistry: $(ContainerRegistry) 
+      Repository: $(Repository)         
