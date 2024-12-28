@@ -18,7 +18,7 @@ resources:
       ref: 'refs/heads/main'   
 
 steps:
-  - template: AzureDevOpsTemplates.git/build/doc-pipeline.yaml@resuablePrivateAssets  
+  - template: build/doc-pipeline.yaml@resuablePrivateAssets  
     parameters:
       goal: $(goal)                   
       Dockerfile: $(Dockerfile)         

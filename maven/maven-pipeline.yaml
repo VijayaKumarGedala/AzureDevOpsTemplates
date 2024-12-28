@@ -22,7 +22,7 @@ resources:
       ref: 'refs/heads/main'   
 
 steps:
-  - template: AzureDevOpsTemplates.git/maven/maven-build.yaml@resuablePrivateAssets  
+  - template: maven/maven-build.yaml@resuablePrivateAssets  
     parameters:
       goal: $(goal)                   
       specificVersion: ''               
