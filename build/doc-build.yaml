@@ -1,4 +1,4 @@
- parameters:
+parameters:
   - name: goal
     type: string
     default: Build
@@ -16,12 +16,11 @@
     default: 'practice_docker'
     displayName: Repository
 
-
- - task: Docker@2
+steps:
+  - task: Docker@2
     displayName: 'Docker build and push'
     inputs:
-      containerRegistry: $ {{ parameters.ContainerRegistry}}
-      repository: $ {{ parameters.Repository}}
-      command: 'buildAndPush' 
-      Dockerfile: ${{ parameters.Dockerfile}}
-      
+      containerRegistry: ${{ parameters.ContainerRegistry }}
+      repository: ${{ parameters.Repository }}
+      command: 'buildAndPush'
+      dockerfile: ${{ parameters.Dockerfile }}
