@@ -16,23 +16,6 @@ parameters:
     default: 'practice_docker'
     displayName: Repository
 
-pool: Default  
-
-trigger: none 
-
-pr:
-  branches:
-    include:
-      - develop  
-
-resources:
-  repositories:
-    - repository: resuablePrivateAssets  
-      type: git                          
-      name: AzureDevOpsTemplates.git 
-      ref: 'refs/heads/main'  
-      
-
 steps:
   - task: Docker@2
     displayName: 'Docker build and push'
