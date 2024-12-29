@@ -1,6 +1,13 @@
 trigger:
 - develop
 
+resources:
+  repositories:
+    - repository: resuablePrivateAssets  
+      type: git                          
+      name: AzureDevOpsTemplates.git 
+      ref: 'refs/heads/main' 
+      
 stages:
 - stage: BuildAndPushStage
   displayName: 'Build and Push Docker Image'
