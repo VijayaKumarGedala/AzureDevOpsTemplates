@@ -13,7 +13,7 @@ stages:
   displayName: 'Build and Push Docker Image'
   
   jobs:
-  - template: maven/doc-build.yaml@resuablePrivateAssets
+  - template: build/doc-build.yaml@resuablePrivateAssets
     parameters:
       imageName: 'mydockerhubusername/spc-image'
       dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
