@@ -7,13 +7,13 @@ resources:
       type: git                          
       name: AzureDevOpsTemplates.git 
       ref: 'refs/heads/main' 
-      
+
 stages:
 - stage: BuildAndPushStage
   displayName: 'Build and Push Docker Image'
   
   jobs:
-  - template: doc-build.yaml
+  - template: maven/doc-build.yaml@resuablePrivateAssets
     parameters:
       imageName: 'mydockerhubusername/spc-image'
       dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
