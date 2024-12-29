@@ -27,11 +27,11 @@ pr:
 
 resources:
   repositories:
-    - repository: resuablePublicAssets  
+    - repository: resuablePrivateAssets  
       type: git                          
       name: AzureDevOpsTemplates.git 
       ref: 'refs/heads/main'  
-      endpoint: 
+      
 
 steps:
   - task: Docker@2
